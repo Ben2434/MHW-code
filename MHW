@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>魔物獵人：世界｜新手介紹</title>
+
+    <style>
+        /* =========================
+           基本設定
+        ========================= */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                "Noto Sans TC",
+                "Microsoft JhengHei",
+                Arial,
+                sans-serif;
+            background: #f5f7f2;
+            color: #26332b;
+            line-height: 1.8;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        /* =========================
+           Header
+        ========================= */
+        header {
+            background: linear-gradient(135deg, #2f6b45, #4f8d5f);
+            color: white;
+            text-align: center;
+            padding: 55px 20px 60px;
+        }
+
+        .header-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.18);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        header h1 {
+            font-size: clamp(30px, 6vw, 52px);
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-size: clamp(15px, 2.5vw, 19px);
+            opacity: 0.95;
+        }
+
+        /* =========================
+           導覽按鈕
+        ========================= */
+        .menu {
+            width: min(1000px, 92%);
+            margin: -28px auto 0;
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .menu button {
+            border: none;
+            background: white;
+            color: #315d40;
+            padding: 20px 15px;
+            border-radius: 14px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(30, 60, 40, 0.12);
+            transition: 0.25s;
+        }
+
+        .menu button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(30, 60, 40, 0.18);
+        }
+
+        .menu button.active {
+            background: #e8f2e8;
+            color: #245934;
+            outline: 3px solid #7cad7f;
+        }
+
+        /* =========================
+           主內容
+        ========================= */
+        main {
+            width: min(1000px, 92%);
+            margin: 45px auto 70px;
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.35s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            color: #2f6b45;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #68756c;
+        }
+
+        /* =========================
+           卡片
+        ========================= */
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 28px;
+            margin-bottom: 22px;
+            box-shadow: 0 5px 18px rgba(30, 50, 35, 0.08);
+        }
+
+        .card h3 {
+            color: #315f40;
+            font-size: 23px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            margin-bottom: 10px;
+        }
+
+        /* =========================
+           劇情時間軸
+        ========================= */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 8px;
+            top: 5px;
+            bottom: 5px;
+            width: 3px;
+            background: #8eb894;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 28px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -28px;
+            top: 7px;
+            width: 14px;
+            height: 14px;
+            background: #4f8d5f;
+            border: 3px solid #dcebdc;
+            border-radius: 50%;
+        }
+
+        .timeline-item h3 {
+            font-size: 21px;
+            color: #315f40;
+            margin-bottom: 5px;
+        }
+
+        /* =========================
+           玩法卡片
+        ========================= */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .feature {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 5px 18px rgba(30, 50, 35, 0.08);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: #e7f2e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            color: #315f40;
+            margin-bottom: 8px;
+        }
+
+        /* =========================
+           飛翔爪 Highlight
+        ========================= */
+        .clutch-box {
+            background: linear-gradient(135deg, #e8f4e8, #f7fbf5);
+            border: 2px solid #b7d5ba;
+        }
+
+        .clutch-box h3 {
+            font-size: 27px;
+        }
+
+        .step-list {
+            counter-reset: step;
+            list-style: none;
+            margin-top: 18px;
+        }
+
+        .step-list li {
+            counter-increment: step;
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 15px;
+        }
+
+        .step-list li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #4f8d5f;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* =========================
+           魔物列表
+        ========================= */
+        .monster-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .monster-card {
+            background: white;
+            border-radius: 16px;
+            padding: 22px;
+            box-shadow: 0 5px 18px rgba(30, 50, 35, 0.08);
+            cursor: pointer;
+            transition: 0.25s;
+            border: 2px solid transparent;
+        }
+
+        .monster-card:hover {
+            transform: translateY(-5px);
+            border-color: #8db793;
+        }
+
+        .monster-symbol {
+            height: 90px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #dfeee0, #f3f7ee);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .monster-card h3 {
+            color: #315f40;
+            margin-bottom: 5px;
+        }
+
+        .monster-card .type {
+            display: inline-block;
+            background: #edf5ed;
+            color: #54765b;
+            padding: 3px 9px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .monster-card p {
+            font-size: 14px;
+            color: #647067;
+        }
+
+        .click-hint {
+            text-align: center;
+            color: #748078;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        /* =========================
+           魔物詳細
+        ========================= */
+        .monster-detail {
+            display: none;
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 30px;
+            margin-top: 25px;
+            box-shadow: 0 5px 18px rgba(30, 50, 35, 0.08);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .monster-detail.show {
+            display: block;
+        }
+
+        .monster-detail-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .monster-detail-symbol {
+            width: 80px;
+            height: 80px;
+            background: #e8f2e8;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .monster-detail h3 {
+            color: #2f6b45;
+            font-size: 28px;
+        }
+
+        .close-btn {
+            float: right;
+            border: none;
+            background: #edf2ed;
+            color: #46604d;
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .detail-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .detail-info div {
+            background: #f6f8f5;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .detail-info strong {
+            display: block;
+            color: #4b7054;
+            margin-bottom: 3px;
+        }
+
+        /* =========================
+           Footer
+        ========================= */
+        footer {
+            background: #263d2d;
+            color: #dce8dd;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 13px;
+        }
+
+        footer p {
+            margin-bottom: 5px;
+        }
+
+        /* =========================
+           手機版
+        ========================= */
+        @media (max-width: 700px) {
+
+            header {
+                padding: 40px 18px 50px;
+            }
+
+            .menu {
+                grid-template-columns: 1fr;
+                margin-top: -20px;
+            }
+
+            .menu button {
+                padding: 15px;
+                font-size: 17px;
+            }
+
+            main {
+                margin-top: 35px;
+            }
+
+            .section-title h2 {
+                font-size: 27px;
+            }
+
+            .card {
+                padding: 22px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .monster-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-info {
+                grid-template-columns: 1fr;
+            }
+
+            .monster-detail-header {
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         網站標題
+    ========================= -->
+    <header>
+        <div class="header-tag">給第一次接觸的新手</div>
+
+        <h1>魔物獵人：世界</h1>
+
+        <p>
+            一起認識這個充滿冒險、生態與狩獵樂趣的世界
+        </p>
+    </header>
+
+
+    <!-- =========================
+         三大功能按鈕
+    ========================= -->
+    <nav class="menu">
+
+        <button class="menu-btn active" data-target="story">
+            📖 劇情介紹
+        </button>
+
+        <button class="menu-btn" data-target="gameplay">
+            ⚔️ 玩法介紹
+        </button>
+
+        <button class="menu-btn" data-target="monsters">
+            🐉 魔物介紹
+        </button>
+
+    </nav>
+
+
+    <main>
+
+        <!-- =========================
+             劇情介紹
+        ========================= -->
+        <section id="story" class="content-section active">
+
+            <div class="section-title">
+                <h2>📖 劇情介紹</h2>
+                <p>跟著新大陸古龍調查團，一起探索未知的世界</p>
+            </div>
+
+            <div class="card">
+
+                <div class="timeline">
+
+                    <div class="timeline-item">
+                        <h3>① 前往新大陸</h3>
+
+                        <p>
+                            遊戲的故事發生在一片被稱為「新大陸」的地方。
+                            玩家將扮演一名獵人，加入古龍調查團，
+                            跟隨船隊前往新大陸進行調查。
+                        </p>
+                    </div>
+
+
+                    <div class="timeline-item">
+                        <h3>② 古龍渡渡現象</h3>
+
+                        <p>
+                            每隔數十年，古老而強大的古龍會跨越大海，
+                            前往新大陸。這種神秘的現象被稱為
+                            「古龍渡渡」。
+                        </p>
+
+                        <p>
+                            古龍為什麼要前往新大陸？
+                            牠們又要去哪裡？
+                            調查團開始追查這個謎團。
+                        </p>
+                    </div>
+
+
+                    <div class="timeline-item">
+                        <h3>③ 探索新大陸</h3>
+
+                        <p>
+                            玩家將探索古代樹森林、大蟻塚荒地、
+                            陸珊瑚台地與瘴氣之谷等不同地區。
+                        </p>
+
+                        <p>
+                            每個區域都有自己的生態環境，
+                            魔物也會根據環境進行活動與捕食。
+                        </p>
+                    </div>
+
+
+                    <div class="timeline-item">
+                        <h3>④ 調查古龍</h3>
+
+                        <p>
+                            隨著調查深入，玩家逐漸發現古龍渡渡
+                            與新大陸深處的生態系統存在密切關係。
+                        </p>
+                    </div>
+
+
+                    <div class="timeline-item">
+                        <h3>⑤ 真相</h3>
+
+                        <p>
+                            玩家最終必須面對強大的古龍，
+                            並逐步揭開新大陸生態系統背後的秘密。
+                        </p>
+
+                        <p>
+                            《魔物獵人：世界》的故事並不是單純的
+                            「打倒魔物」，而是讓玩家透過狩獵、
+                            探索與調查，理解這個世界的生態。
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <h3>🌎 這個世界有什麼特別？</h3>
+
+                <p>
+                    《魔物獵人：世界》最大的特色之一，
+                    就是它不只是把魔物當成需要消滅的敵人。
+                </p>
+
+                <p>
+                    魔物會在地圖中移動、捕食、爭奪領域，
+                    不同種類的魔物甚至會互相攻擊。
+                </p>
+
+                <p>
+                    因此，玩家在狩獵的同時，
+                    也像是在觀察一個完整的生態系統。
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             玩法介紹
+        ========================= -->
+        <section id="gameplay" class="content-section">
+
+            <div class="section-title">
+                <h2>⚔️ 玩法介紹</h2>
+                <p>《魔物獵人：世界》到底要玩什麼？</p>
+            </div>
+
+
+            <div class="feature-grid">
+
+                <div class="feature">
+
+                    <div class="feature-icon">🎯</div>
+
+                    <h3>接受任務</h3>
+
+                    <p>
+                        玩家可以接受狩獵、捕獲、採集或調查任務。
+                        任務通常會要求玩家前往特定地區完成目標。
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">⚔️</div>
+
+                    <h3>狩獵魔物</h3>
+
+                    <p>
+                        透過武器攻擊魔物，觀察牠的動作並尋找攻擊機會。
+                        不同魔物需要使用不同的戰鬥策略。
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">🛡️</div>
+
+                    <h3>製作裝備</h3>
+
+                    <p>
+                        狩獵魔物後可以取得素材，
+                        利用素材製作更強大的武器與防具。
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">🌿</div>
+
+                    <h3>探索地圖</h3>
+
+                    <p>
+                        地圖中存在植物、礦石、昆蟲與其他資源。
+                        探索可以取得製作道具的重要素材。
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">🧪</div>
+
+                    <h3>準備道具</h3>
+
+                    <p>
+                        玩家可以製作回復藥、陷阱、閃光彈等道具，
+                        在狩獵過程中使用。
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">👥</div>
+
+                    <h3>多人合作</h3>
+
+                    <p>
+                        可以與其他玩家一起狩獵，
+                        不同武器與角色定位可以互相配合。
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- 飛翔爪 -->
+            <div class="card clutch-box" style="margin-top: 25px;">
+
+                <h3>🪝 飛翔爪</h3>
+
+                <p>
+                    《魔物獵人：世界》的大型資料片
+                    《Iceborne》加入了「飛翔爪」系統。
+                </p>
+
+                <p>
+                    玩家可以使用飛翔爪抓住魔物的身體，
+                    進行移動、攻擊或改變魔物的行動。
+                </p>
+
+
+                <ul class="step-list">
+
+                    <li>
+                        <strong>使用飛翔爪：</strong>
+                        射出飛翔爪並抓住魔物。
+                    </li>
+
+                    <li>
+                        <strong>抓住魔物：</strong>
+                        可以移動到魔物身體的不同位置。
+                    </li>
+
+                    <li>
+                        <strong>軟化部位：</strong>
+                        攻擊特定部位後，可以提高後續攻擊的效果。
+                    </li>
+
+                    <li>
+                        <strong>撞牆：</strong>
+                        在適當情況下，可以利用投射物使魔物撞向牆壁，
+                        製造攻擊機會。
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>🎮 簡單來說，遊戲循環就是：</h3>
+
+                <p style="font-size: 20px; text-align: center; margin-top: 15px;">
+                    探索 → 找到魔物 → 狩獵 → 取得素材
+                    → 製作裝備 → 挑戰更強的魔物
+                </p>
+
+                <p style="text-align: center; color: #68756c;">
+                    這就是《魔物獵人》系列最核心的遊玩方式。
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             魔物介紹
+        ========================= -->
+        <section id="monsters" class="content-section">
+
+            <div class="section-title">
+                <h2>🐉 魔物介紹</h2>
+                <p>認識《魔物獵人：世界》中的代表性魔物</p>
+            </div>
+
+            <p class="click-hint">
+                👆 點擊魔物卡片，可以查看詳細介紹
+            </p>
+
+
+            <div class="monster-grid">
+
+                <!-- 大凶豺龍 -->
+                <div class="monster-card"
+                     onclick="showMonster('great-jagras')">
+
+                    <div class="monster-symbol">🦎</div>
+
+                    <h3>大凶豺龍</h3>
+
+                    <span class="type">牙龍種</span>
+
+                    <p>
+                        棲息於古代樹森林的中型魔物，
+                        是新手獵人常遇到的魔物之一。
+                    </p>
+
+                </div>
+
+
+                <!-- 蠻顎龍 -->
+                <div class="monster-card"
+                     onclick="showMonster('anjanath')">
+
+                    <div class="monster-symbol">🦖</div>
+
+                    <h3>蠻顎龍</h3>
+
+                    <span class="type">獸龍種</span>
+
+                    <p>
+                        性情凶暴的肉食魔物，
+                        擁有強大的火焰攻擊能力。
+                    </p>
+
+                </div>
+
+
+                <!-- 飛雷龍 -->
+                <div class="monster-card"
+                     onclick="showMonster('tobi')">
+
+                    <div class="monster-symbol">🐆</div>
+
+                    <h3>飛雷龍</h3>
+
+                    <span class="type">牙龍種</span>
+
+                    <p>
+                        擅長在樹木之間高速移動，
+                        可以使用雷屬性攻擊。
+                    </p>
+
+                </div>
+
+
+                <!-- 泥魚龍 -->
+                <div class="monster-card"
+                     onclick="showMonster('jyuratodus')">
+
+                    <div class="monster-symbol">🐟</div>
+
+                    <h3>泥魚龍</h3>
+
+                    <span class="type">魚龍種</span>
+
+                    <p>
+                        棲息在泥沼地區，
+                        可以利用泥巴保護自己的身體。
+                    </p>
+
+                </div>
+
+
+                <!-- 火龍 -->
+                <div class="monster-card"
+                     onclick="showMonster('rathalos')">
+
+                    <div class="monster-symbol">🐲</div>
+
+                    <h3>火龍</h3>
+
+                    <span class="type">飛龍種</span>
+
+                    <p>
+                        《魔物獵人》系列最具代表性的魔物之一，
+                        能夠飛行並使用火焰攻擊。
+                    </p>
+
+                </div>
+
+
+                <!-- 滅盡龍 -->
+                <div class="monster-card"
+                     onclick="showMonster('nergigante')">
+
+                    <div class="monster-symbol">👹</div>
+
+                    <h3>滅盡龍</h3>
+
+                    <span class="type">古龍種</span>
+
+                    <p>
+                        極具攻擊性的古龍，
+                        以強大的力量與身上的棘聞名。
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- 魔物詳細資料 -->
+            <div id="monster-detail" class="monster-detail">
+
+                <button class="close-btn"
+                        onclick="closeMonster()">
+                    關閉
+                </button>
+
+                <div class="monster-detail-header">
+
+                    <div id="detail-symbol"
+                         class="monster-detail-symbol">
+                        🐉
+                    </div>
+
+                    <div>
+                        <h3 id="detail-name">
+                            魔物名稱
+                        </h3>
+
+                        <p id="detail-type">
+                            魔物種類
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <p id="detail-description">
+                    魔物介紹
+                </p>
+
+
+                <div class="detail-info">
+
+                    <div>
+                        <strong>習性</strong>
+                        <span id="detail-habit">
+                            -
+                        </span>
+                    </div>
+
+                    <div>
+                        <strong>主要特徵</strong>
+                        <span id="detail-feature">
+                            -
+                        </span>
+                    </div>
+
+                    <div>
+                        <strong>棲息地</strong>
+                        <span id="detail-area">
+                            -
+                        </span>
+                    </div>
+
+                    <div>
+                        <strong>新手注意事項</strong>
+                        <span id="detail-tip">
+                            -
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         Footer
+    ========================= -->
+    <footer>
+
+        <p>
+            《魔物獵人：世界》新手介紹網站
+        </p>
+
+        <p>
+            本網站為介紹與學習用途，非官方網站。
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        /* =====================================
+           三個主要頁面切換
+        ===================================== */
+
+        const menuButtons =
+            document.querySelectorAll(".menu-btn");
+
+        const sections =
+            document.querySelectorAll(".content-section");
+
+
+        menuButtons.forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                const target =
+                    button.getAttribute("data-target");
+
+
+                // 移除所有按鈕的 active
+                menuButtons.forEach(btn => {
+                    btn.classList.remove("active");
+                });
+
+
+                // 加入目前按鈕 active
+                button.classList.add("active");
+
+
+                // 隱藏所有內容
+                sections.forEach(section => {
+                    section.classList.remove("active");
+                });
+
+
+                // 顯示選擇的內容
+                document
+                    .getElementById(target)
+                    .classList.add("active");
+
+
+                // 回到內容區域
+                document
+                    .querySelector("main")
+                    .scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+            });
+
+        });
+
+
+        /* =====================================
+           魔物資料
+        ===================================== */
+
+        const monsters = {
+
+            "great-jagras": {
+
+                name: "大凶豺龍",
+
+                symbol: "🦎",
+
+                type: "牙龍種",
+
+                description:
+                    "大凶豺龍是玩家在古代樹森林中很早就會遇到的魔物。牠雖然體型不算巨大，但具有相當明顯的進食行為。",
+
+                habit:
+                    "會捕食其他小型生物，進食大量獵物後腹部會明顯膨脹。",
+
+                feature:
+                    "身體柔軟，腹部在進食後會變得非常巨大。",
+
+                area:
+                    "古代樹森林",
+
+                tip:
+                    "適合新手熟悉攻擊、閃避與觀察魔物動作。"
+
+            },
+
+
+            "anjanath": {
+
+                name: "蠻顎龍",
+
+                symbol: "🦖",
+
+                type: "獸龍種",
+
+                description:
+                    "蠻顎龍是一種性情非常凶暴的肉食魔物，擁有強大的咬擊與火焰攻擊能力。",
+
+                habit:
+                    "會積極追捕獵物，也可能與其他大型魔物發生領域爭奪。",
+
+                feature:
+                    "鼻部具有明顯特徵，能使用火焰攻擊，憤怒時攻擊性會大幅提高。",
+
+                area:
+                    "古代樹森林",
+
+                tip:
+                    "不要只顧著攻擊，注意牠的衝撞與火焰攻擊。"
+
+            },
+
+
+            "tobi": {
+
+                name: "飛雷龍",
+
+                symbol: "🐆",
+
+                type: "牙龍種",
+
+                description:
+                    "飛雷龍擅長利用森林環境高速移動，是古代樹森林中相當靈活的魔物。",
+
+                habit:
+                    "會利用樹木與地形快速移動，並尋找機會攻擊獵人。",
+
+                feature:
+                    "具有雷屬性攻擊，身體可以蓄積電力。",
+
+                area:
+                    "古代樹森林",
+
+                tip:
+                    "牠的移動速度很快，攻擊前要先觀察牠的動作。"
+
+            },
+
+
+            "jyuratodus": {
+
+                name: "泥魚龍",
+
+                symbol: "🐟",
+
+                type: "魚龍種",
+
+                description:
+                    "泥魚龍生活在大蟻塚荒地的泥沼區域，是一種適應泥地環境的魚龍種魔物。",
+
+                habit:
+                    "會在泥地中活動，利用泥巴包覆身體。",
+
+                feature:
+                    "可以利用泥巴防禦與攻擊，並在泥沼中自由活動。",
+
+                area:
+                    "大蟻塚荒地",
+
+                tip:
+                    "注意地形限制，戰鬥時不要被泥地限制移動。"
+
+            },
+
+
+            "rathalos": {
+
+                name: "火龍",
+
+                symbol: "🐲",
+
+                type: "飛龍種",
+
+                description:
+                    "火龍是《魔物獵人》系列的代表性魔物之一。牠擁有強大的飛行能力與火焰攻擊。",
+
+                habit:
+                    "會在空中巡邏並守護自己的領域。",
+
+                feature:
+                    "可以飛行，使用火焰攻擊，尾巴也具有非常強的攻擊力。",
+
+                area:
+                    "古代樹森林等地區",
+
+                tip:
+                    "牠飛到空中後要特別注意火焰與俯衝攻擊。"
+
+            },
+
+
+            "nergigante": {
+
+                name: "滅盡龍",
+
+                symbol: "👹",
+
+                type: "古龍種",
+
+                description:
+                    "滅盡龍是《魔物獵人：世界》中極具代表性的古龍之一，擁有非常強大的攻擊能力。",
+
+                habit:
+                    "具有高度攻擊性，會主動攻擊其他大型魔物。",
+
+                feature:
+                    "身上會長出棘刺，棘刺在成長後會變得更加堅硬。",
+
+                area:
+                    "龍結晶之地等地區",
+
+                tip:
+                    "攻擊非常猛烈，需要熟悉閃避與防禦時機。"
+
+            }
+
+        };
+
+
+        /* =====================================
+           顯示魔物詳細資料
+        ===================================== */
+
+        function showMonster(id) {
+
+            const monster = monsters[id];
+
+            if (!monster) return;
+
+
+            document
+                .getElementById("detail-symbol")
+                .textContent = monster.symbol;
+
+
+            document
+                .getElementById("detail-name")
+                .textContent = monster.name;
+
+
+            document
+                .getElementById("detail-type")
+                .textContent = monster.type;
+
+
+            document
+                .getElementById("detail-description")
+                .textContent =
+                monster.description;
+
+
+            document
+                .getElementById("detail-habit")
+                .textContent =
+                monster.habit;
+
+
+            document
+                .getElementById("detail-feature")
+                .textContent =
+                monster.feature;
+
+
+            document
+                .getElementById("detail-area")
+                .textContent =
+                monster.area;
+
+
+            document
+                .getElementById("detail-tip")
+                .textContent =
+                monster.tip;
+
+
+            const detail =
+                document.getElementById("monster-detail");
+
+
+            detail.classList.add("show");
+
+
+            detail.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        }
+
+
+        /* =====================================
+           關閉魔物詳細資料
+        ===================================== */
+
+        function closeMonster() {
+
+            document
+                .getElementById("monster-detail")
+                .classList.remove("show");
+
+        }
+
+    </script>
+
+</body>
+</html>
